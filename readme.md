@@ -23,6 +23,9 @@
 ## Pre-requisite 
 - Proficiency in JavaScript
 
+## Reference
+- https://bit.ly/node-training-videos
+
 ## Node.js
 - What?
     - Runtime Environment where JS code can be executed
@@ -30,6 +33,12 @@
     - Less resources (https://highscalability.com/linkedin-moved-from-rails-to-node-27-servers-cut-and-up-to-2/)
 - How?
     - Single Threaded Event Loop
-    
 
+## Using Node.js
 
+### REPL mode
+
+## Assignment-1
+Write a node program (calculator.js)
+    - with a calculator object created with 'add', 'subtract', multiply, divide methods
+    - invoke the calculator object methods with arguments 100 & 200 and print the results
