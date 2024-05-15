@@ -42,3 +42,20 @@
 Write a node program (calculator.js)
     - with a calculator object created with 'add', 'subtract', multiply, divide methods
     - invoke the calculator object methods with arguments 100 & 200 and print the results
+
+## Assignment-2
+- Create a file 'accumulator.js' exporting an 'accumulator' object with the following methods
+    - add(n)
+    - subtract(n)
+    - multiply(n)
+    - divide(n)
+    - getResult()
+
+- Create a file 'accumulator-client.js' that imports the accumulator from 'accumulator.js' and uses it
+```
+acc.add(100)
+acc.subtract(50)
+acc.multiply(5)
+acc.divide(2)
+console.log(acc.getResult()) //=> 125
+```
