@@ -59,3 +59,7 @@ acc.multiply(5)
 acc.divide(2)
 console.log(acc.getResult()) //=> 125
 ```
+
+## Assignment-3
+- read the file 'calculator.dat' and invoke the corresponding 'calculator' methods and print the result
+- IMPORTANT : Write 3 versions of the solution (fs.readFileSync, fs.readFile, fs.createReadStream)
