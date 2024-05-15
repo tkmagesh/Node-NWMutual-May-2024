@@ -6,16 +6,21 @@
     <title>Scheduler</title>
     <script>
         (function(){
-            function doWork(onCompletion){
+            function doWork(onCompletion, onProgress){
                 var totalIterations = 1000,
                     currentIteration = 0;
                 
                     function oneIteration(){
-                        for(var i = 0; i < (10000/totalIterations); i++)
+                        for(var i = 0; i < (10000/totalIterations); i++){
                             for(var j = 0; j < 1000; j++)
                                 for(var k = 0; k < 1000; k++){
                                 }
+                        }
                         ++currentIteration;
+                        if (currentIteration % 10 === 0){
+                            var percentCompleted = ((currentIteration/totalIterations) * 100)
+                            onProgress(percentCompleted);
+                        }
                         if (currentIteration < totalIterations){
                             setTimeout(oneIteration)
                         } else {
@@ -34,12 +39,18 @@
             
             function onBtnDoWorkClick(){
                 displayMessage('Work Started!'); 
-                doWork(onTaskCompletion);
+                doWork(onTaskCompletion, onTaskProgress);
+                
             }
 
             function onTaskCompletion(){
                 displayMessage('Work Completed') 
             }
+
+            function onTaskProgress(percentCompleted){
+                document.getElementById('workProgress').value = percentCompleted;
+            }
+
             function onDocumentLoad(){
                 var btnDoWork = document.getElementById('btnDoWork');
                 btnDoWork.addEventListener('click', onBtnDoWorkClick)
@@ -52,6 +63,9 @@
     <h1>Scheduler</h1>
     <input type="text" name="" id="">
     <button id="btnDoWork">Do Work</button>
+    <div>
+        <progress id="workProgress" min="0" max="100" value="0"></progress>
+    </div>
     <div id="divMessages"></div>
 </body>
 </html>
