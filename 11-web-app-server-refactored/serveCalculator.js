@@ -1,7 +1,7 @@
 const calculator = require("./calculator"),
   querystring = require("node:querystring");
 
-function serveCalculator(req, res){
+function serveCalculator(req, res, next){
     const urlObj = new URL(req.url, "http://localhost");
     if (urlObj.pathname === "/calculator" && req.method === "GET") {
       const op = urlObj.searchParams.get("op"),
@@ -10,6 +10,7 @@ function serveCalculator(req, res){
         result = calculator[op](x, y);
       res.write(result.toString());
       res.end();
+      next()
     } else if (urlObj.pathname === "/calculator" && req.method === "POST") {
       let reqBody = "";
       req.on("data", (chunk) => (reqBody += chunk));
@@ -21,8 +22,11 @@ function serveCalculator(req, res){
           result = calculator[op](x, y);
         res.write(result.toString());
         res.end();
+        next()
       });
-    } 
+    } else {
+      next()
+    }
 }
 
 module.exports = serveCalculator;
