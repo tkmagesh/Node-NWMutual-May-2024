@@ -1,29 +1,22 @@
-const calculator = require("./calculator"),
-  querystring = require("node:querystring");
+const calculator = require("./calculator")
 
 function serveCalculator(req, res, next){
     const urlObj = new URL(req.url, "http://localhost");
     if (urlObj.pathname === "/calculator" && req.method === "GET") {
-      const op = urlObj.searchParams.get("op"),
-        x = parseInt(urlObj.searchParams.get("x")),
-        y = parseInt(urlObj.searchParams.get("y")),
+      const op = req.query.op,
+        x = parseInt(req.query.x),
+        y = parseInt(req.query.y),
         result = calculator[op](x, y);
       res.write(result.toString());
       res.end();
       next()
     } else if (urlObj.pathname === "/calculator" && req.method === "POST") {
-      let reqBody = "";
-      req.on("data", (chunk) => (reqBody += chunk));
-      req.on("end", () => {
-        const data = querystring.parse(reqBody),
-          x = parseInt(data.x),
-          y = parseInt(data.y),
-          op = data.op,
+      const x = parseInt(req.body.x),
+          y = parseInt(req.body.y),
+          op = req.body.op,
           result = calculator[op](x, y);
         res.write(result.toString());
         res.end();
-        next()
-      });
     } else {
       next()
     }
