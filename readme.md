@@ -63,3 +63,23 @@ console.log(acc.getResult()) //=> 125
 ## Assignment-3
 - read the file 'calculator.dat' and invoke the corresponding 'calculator' methods and print the result
 - IMPORTANT : Write 3 versions of the solution (fs.readFileSync, fs.readFile, fs.createReadStream)
+
+## Assignment-4
+```
+Create a server (app server) which will respond to the following req
+    http://localhost:9090/calculator?op=add&x=100&y=200
+        => 300
+    http://localhost:9090/calculator?op=subtract&x=100&y=200
+        => -100
+
+when a request is received
+    if the resourceRequest is '/calculator'
+        var urlObj = new URL(req.url)
+        var qs = urlObj.searchParams
+        op = qs.get('op')
+        use the calcualtor to calculate
+        return the result
+    else
+        send '404'
+
+```
