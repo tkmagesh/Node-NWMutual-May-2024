@@ -108,3 +108,21 @@ npm init -y
 
 ## Popular packages
 - [Package List](https://github.com/sindresorhus/awesome-nodejs)
+
+## Task API
+http://localhost:3000/tasks
+- GET
+- GET (by id - http://localhost:3000/tasks/100)
+- POST
+- PUT
+- DELETE
+
+## CURL
+- GET
+```
+curl http://localhost:3000/tasks
+```
+- POST
+```
+curl http://localhost:3000/tasks -X POST -H "Content-Type:application/json" -d '{"id" : 0, "name" : "Build apps", "isCompleted" : false }'
+```
