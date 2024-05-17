@@ -1,0 +1,24 @@
+{
+  "name": "web-app-server",
+  "version": "1.0.0",
+  "description": "a demo server application in node.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkmagesh/node-nwmutual-may-2024.git"
+  },
+  "author": "Magesh K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tkmagesh/node-nwmutual-may-2024/issues"
+  },
+  "homepage": "https://github.com/tkmagesh/node-nwmutual-may-2024#readme",
+  "dependencies": {
+    "chalk": "^2.0.0",
+    "nodemon": "^3.1.0"
+  }
+}

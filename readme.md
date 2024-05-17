@@ -86,3 +86,25 @@ when a request is received
 
 ## Assignment-5
 combine the functionality of 'web server' & 'app server' in one single server
+
+## package.json
+- Metadata file for any js application
+    - Name
+    - Version
+    - Description
+    - Repository
+    - Dependencies
+    - Scripts
+- Create a package.json file
+```
+npm init
+```
+OR
+```
+npm init -y
+```
+
+## npm (package manager for js)
+
+## Popular packages
+- [Package List](https://github.com/sindresorhus/awesome-nodejs)
