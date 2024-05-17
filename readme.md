@@ -126,3 +126,11 @@ curl http://localhost:3000/tasks
 ```
 curl http://localhost:3000/tasks -X POST -H "Content-Type:application/json" -d '{"id" : 0, "name" : "Build apps", "isCompleted" : false }'
 ```
+- PUT
+```
+curl http://localhost:3000/tasks/1 -X PUT -H "Content-Type:application/json" -d '{"id":1,"name":"Master JavaScript","isCompleted":true,"createdAt":"2024-05-17T17:19:04.574Z"}'
+```
+- DELETE
+```
+curl http://localhost:3000/tasks/1 -X DELETE
+```
