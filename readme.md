@@ -134,3 +134,6 @@ curl http://localhost:3000/tasks/1 -X PUT -H "Content-Type:application/json" -d 
 ```
 curl http://localhost:3000/tasks/1 -X DELETE
 ```
+
+## Promise
+- Object designed communicate the result of an async operation. It holds the resulve of the async operation.
