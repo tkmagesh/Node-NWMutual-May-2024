@@ -1,62 +1,52 @@
-const express = require('express');
-const router = express.Router();
-
-// TO BE REFACTORED
-let tasks = [
-    {id : 1, name : 'Master JavaScript', isCompleted : false, createdAt : new Date()},
-    {id : 2, name : 'Plan vacation', isCompleted : true, createdAt : new Date()},
-    {id : 3, name : 'Explore Node.js', isCompleted : false, createdAt : new Date()},
-]
+import express from "express";
+import taskService from '../services/taskService.js';
+let router = express.Router();
 
 // configure the routes
-router.get('/', function(req, res, next){
-    // use 'send()' to send text
-    // res.send('All the tasks will be served!')
-
-    // use 'json()' to send json data
-    res.json(tasks);
+router.get("/", async function (req, res, next) {
+  const tasks = await taskService.getAll();
+  res.json(tasks);
 });
 
-router.post('/', function(req, res, next){
-    const newTask = req.body;
-    console.log(newTask);
-    newTask.id = tasks.reduce((prevResult, task) => prevResult > task.id ? prevResult : task.id, 0) + 1;
-    newTask.createdAt = new Date();
-    tasks.push(newTask);
-    res.status(201).json(newTask);
+
+router.get("/:task_id", async function (req, res, next) {
+  const taskId = parseInt(req.params.task_id);
+  const task = await taskService.getById(taskId);
+  if (task) {
+    res.json(task);
+    return;
+  }
+  res.status(404).end();
 });
 
-router.get('/:task_id', function(req, res, next){
-    const taskId = parseInt(req.params.task_id)
-    const task = tasks.find(task => task.id === taskId);
-    if (task){
-        res.json(task)
-        return
-    }
-    res.status(404).end()
+router.post("/", async function (req, res, next) {
+  const newTaskData = req.body;
+  const newTask = await taskService.save(newTaskData)
+  res.status(201).json(newTask);
 });
 
-router.delete('/:task_id', function(req, res, next){
-    const taskId = parseInt(req.params.task_id);
-    const taskToRemove = tasks.find((task) => task.id === taskId);
-    if (taskToRemove){
-        tasks = tasks.filter(task => task.id !== taskToRemove.id)
-        res.status(200).json({})
-        return
-    }
-    res.status(404).json({})
-})
 
-router.put("/:task_id", function (req, res, next) {
+router.delete("/:task_id", async function (req, res, next) {
+  const taskId = parseInt(req.params.task_id);
+  const taskToRemove = await taskService.getById(taskId)
+  if (taskToRemove) {
+    await taskService.remove(taskToRemove);
+    res.status(200).json({})
+    return
+  }
+  res.status(404).json({});
+});
+
+router.put("/:task_id", async function (req, res, next) {
   const taskId = parseInt(req.params.task_id);
   const taskToUpdate = req.body;
-  const existingTask = tasks.find((task) => task.id === taskId);
+  const existingTask = await taskService.getById(taskId)
   if (existingTask) {
-    tasks = tasks.map((task) => task.id === taskId ? taskToUpdate : task);
-    res.status(200).json(taskToUpdate);
+    const updatedTask = taskService.save(taskToUpdate)
+    res.status(200).json(updatedTask);
     return;
   }
   res.status(404).json({});
 });
 
-module.exports = router;
+export default router;

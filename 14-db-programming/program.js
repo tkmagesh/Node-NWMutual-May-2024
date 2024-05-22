@@ -17,7 +17,7 @@ import SQL from "sql-template-strings";
     */
 
     // query 1 row from the db table
-    const taskId = 2
+    const taskId = 1
     const task = await db.get(SQL`select * from tasks where id = ${taskId}`)
     console.log(task);
    
@@ -34,6 +34,7 @@ import SQL from "sql-template-strings";
 
     
     
+    /* 
     try {
         const newTask = {
             name : 'Use sql strings - new',
@@ -42,6 +43,21 @@ import SQL from "sql-template-strings";
         }
       const result = await db.run(
         SQL`INSERT INTO tasks (name, isCompleted, created_at) VALUES ( ${newTask.name}, ${newTask.isCompleted}, ${newTask.createdAt})`
+      );
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }   
+    */
+
+    try {
+      const taskData = {
+        name: "Use sql strings - updated",
+        isCompleted: false,
+        id : 1,
+      };
+      const result = await db.run(
+        SQL`UPDATE TASKS Set name = ${taskData.name}, isCompleted = ${taskData.isCompleted} WHERE id = ${taskData.id}`
       );
       console.log(result);
     } catch (err) {

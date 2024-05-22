@@ -128,7 +128,7 @@ curl http://localhost:3000/tasks -X POST -H "Content-Type:application/json" -d '
 ```
 - PUT
 ```
-curl http://localhost:3000/tasks/1 -X PUT -H "Content-Type:application/json" -d '{"id":1,"name":"Master JavaScript","isCompleted":true,"createdAt":"2024-05-17T17:19:04.574Z"}'
+curl http://localhost:3000/tasks/1 -X PUT -H "Content-Type:application/json" -d '{"id":1,"name":"Master JavaScript","isCompleted":true}'
 ```
 - DELETE
 ```
@@ -137,3 +137,11 @@ curl http://localhost:3000/tasks/1 -X DELETE
 
 ## Promise
 - Object designed communicate the result of an async operation. It holds the resulve of the async operation.
+
+## Task API Updates with DB
+### Notes on the code changes
+- All CommonJS 'require' usage replaced with ES6 module 'imports'
+- All module.exports usage replaced with ES6 module 'export'
+- Introduced 'taskDb.js' in the 'services' folder to encapsulate the database interaction
+- Converted the taskService methods into 'async' functions 
+- Converted the handler functions in routes (routes/tasks.js) into 'async' functions
